@@ -1,59 +1,84 @@
 ﻿@model IEnumerable<Bibliosys.Model.Book>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Biblioteka Książek";
 }
 
-<h1>Index</h1>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="display-4">Biblioteka Książek</h1>
+        </div>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsFree)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsFree)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    @if (Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-1 border-light hover-shadow">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark fw-bold" style="font-size: 1.1rem;">@Html.DisplayFor(modelItem => item.Title)</h5>
+
+                            <div class="mb-3">
+                                <span class="badge bg-light text-dark" style="border: 1px solid #ddd;">@Html.DisplayFor(modelItem => item.Category)</span>
+                                @if (item.IsFree)
+                                {
+                                    <span class="badge bg-light text-dark ms-2" style="border: 1px solid #ddd;">Dostępna</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-light text-dark ms-2" style="border: 1px solid #999;">Wypożyczona</span>
+                                }
+                            </div>
+
+                            <p class="text-muted small mb-2">
+                                <strong>Autor:</strong> @Html.DisplayFor(modelItem => item.Author.Id)
+                            </p>
+
+                            <p class="card-text text-secondary small" style="line-height: 1.5;">
+                                @if (item.Description.Length > 100)
+                                {
+                                    @Html.DisplayFor(modelItem => item.Description).ToString().Substring(0, 100)<span>...</span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                }
+                            </p>
+                        </div>
+                        <div class="card-footer bg-light border-top-1" style="border-color: #e9ecef;">
+                            <div class="d-flex gap-2 justify-content-center">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-light text-dark border border-secondary" title="Szczegóły">
+                                    Szczegóły
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light text-dark border border-secondary" title="Edytuj">
+                                    Edytuj
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light text-dark border border-secondary" title="Usuń">
+                                    Usuń
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-light border border-secondary text-secondary" role="alert">
+            <strong>Brak książek!</strong> Biblioteka jest pusta. <a asp-action="Create" class="text-decoration-none">Dodaj pierwszą książkę</a>.
+        </div>
+    }
+</div>
+
+<style>
+    .hover-shadow {
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .hover-shadow:hover {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
+    }
+</style>
