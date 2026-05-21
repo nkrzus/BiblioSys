@@ -516,3 +516,4 @@ C:\dev\BiblioSys\BiblioSys\obj\Debug\net8.0\refint\BiblioSys.dll
 C:\dev\BiblioSys\BiblioSys\obj\Debug\net8.0\BiblioSys.pdb
 C:\dev\BiblioSys\BiblioSys\obj\Debug\net8.0\BiblioSys.genruntimeconfig.cache
 C:\dev\BiblioSys\BiblioSys\obj\Debug\net8.0\ref\BiblioSys.dll
+C:\dev\BiblioSys\BiblioSys\obj\Debug\net8.0\BiblioSys.sourcelink.json

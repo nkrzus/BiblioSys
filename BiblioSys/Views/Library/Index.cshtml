@@ -34,17 +34,25 @@
                             </div>
 
                             <p class="text-muted small mb-2">
-                                <strong>Autor:</strong> @Html.DisplayFor(modelItem => item.Author.Id)
+                                <strong>Autor:</strong> @(item.Author != null ? item.Author.FirstName +" "+ item.Author.LastName : "Brak autora")
                             </p>
 
                             <p class="card-text text-secondary small" style="line-height: 1.5;">
-                                @if (item.Description.Length > 100)
+                                @if (!string.IsNullOrEmpty(item.Description))
                                 {
-                                    @Html.DisplayFor(modelItem => item.Description).ToString().Substring(0, 100)<span>...</span>
+                                    if (item.Description.Length > 100)
+                                    {
+                                        @item.Description.Substring(0, 100)
+                                        <span>...</span>
+                                    }
+                                    else
+                                    {
+                                        @item.Description
+                                    }
                                 }
                                 else
                                 {
-                                    @Html.DisplayFor(modelItem => item.Description)
+                                    <span class="text-muted">Brak opisu</span>
                                 }
                             </p>
                         </div>
@@ -78,7 +86,8 @@
     .hover-shadow {
         transition: box-shadow 0.3s ease-in-out;
     }
-    .hover-shadow:hover {
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
-    }
+
+        .hover-shadow:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
+        }
 </style>

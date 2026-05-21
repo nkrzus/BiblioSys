@@ -16,9 +16,11 @@ namespace Bibliosys.Model
 
         public string Email { get; set; }
 
-        public double AccountBalance { get; set; }
+        public double AccountBalance { get; set; } = 0;
 
-        public List<Reservation> Reservations { get; set; }
+        public List<Reservation> ?Reservations { get; set; }
+
+        public bool IsAdmin { get; set; } = false;
 
 
     }
