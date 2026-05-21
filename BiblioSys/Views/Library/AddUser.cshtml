@@ -28,7 +28,24 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             
-                        <div class="form-group">
+            <div class="form-group">
+                <label class="control-label">Hasło</label>
+
+                <div class="input-group">
+                    <input id="password" asp-for="Password" type="password" class="form-control" />
+
+                    <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
+                        👁
+                    </button>
+                </div>
+
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+
+
+            
+            <div class="form-group">
                 <input type="submit" value="Gotowe" class="btn btn-primary" />
             </div>
         </form>
@@ -40,5 +57,19 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById("password");
+
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
 }
