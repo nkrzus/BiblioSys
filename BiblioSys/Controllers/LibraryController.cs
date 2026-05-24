@@ -35,5 +35,29 @@ namespace BiblioSys.Controllers
             }
             return View(user);
         }
+
+        public IActionResult AddBook()
+        {
+            var authors = db.Authors.ToList();
+            ViewBag.Authors = authors;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddBook(Book book)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Books.Add(book);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            var authors = await db.Authors.ToListAsync();
+            ViewBag.Authors = authors;
+            return View(book);
+        }
     }
 }

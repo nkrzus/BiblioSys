@@ -1,0 +1,72 @@
+﻿@model Bibliosys.Model.Book
+
+@{
+    ViewData["Title"] = "AddBook";
+}
+
+<h1>Dodaj nową książkę</h1>
+
+<h4>Formularz dodawania książki</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddBook" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label class="control-label">Tytuł</label>
+                <input asp-for="Title" class="form-control" /> 
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Kategoria</label>
+                <select asp-for="Category" class="form-control" asp-items="Html.GetEnumSelectList<BiblioSys.Enums.Category>()">
+                    <option value="">-- Wybierz kategorię --</option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Autor</label>
+                <select asp-for="AuthorId" class="form-control">
+                    <option value="">-- Wybierz autora --</option>
+                    @if (ViewBag.Authors != null)
+                    {
+                        @foreach (var author in ViewBag.Authors)
+                        {
+                            <option value="@author.Id">@author.FirstName @author.LastName</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Opis</label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" asp-for="IsFree" class="form-check-input" id="IsFree" />
+                <label class="form-check-label" for="IsFree">Książka jest dostępna</label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Dodaj książkę" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Powrót do listy książek</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
