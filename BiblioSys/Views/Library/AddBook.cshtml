@@ -58,16 +58,21 @@
                             <label class="form-label fw-semibold text-dark mb-2">
                                 ✍️ Autor <span class="text-danger">*</span>
                             </label>
-                            <select asp-for="AuthorId" class="form-select form-select-lg rounded-3 border-2">
-                                <option value="">-- Wybierz autora --</option>
-                                @if (ViewBag.Authors != null)
-                                {
-                                    @foreach (var author in ViewBag.Authors)
+                            <div class="input-group">
+                                <select asp-for="AuthorId" class="form-select form-select-lg rounded-start-3 border-2">
+                                    <option value="">-- Wybierz autora --</option>
+                                    @if (ViewBag.Authors != null)
                                     {
-                                        <option value="@author.Id">@author.FirstName @author.LastName</option>
+                                        @foreach (var author in ViewBag.Authors)
+                                        {
+                                            <option value="@author.Id">@author.FirstName @author.LastName</option>
+                                        }
                                     }
-                                }
-                            </select>
+                                </select>
+                                <a asp-action="AddAuthor" class="btn btn-outline-primary fw-bold rounded-end-3" title="Dodaj nowego autora">
+                                    ➕
+                                </a>
+                            </div>
                             <span asp-validation-for="AuthorId" class="text-danger small d-block mt-2"></span>
                         </div>
 

@@ -1,0 +1,118 @@
+@model Bibliosys.Model.Author
+
+@{
+    ViewData["Title"] = "AddAuthor";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <!-- Nagłówek -->
+            <div class="mb-5 text-center">
+                <h1 class="display-5 fw-bold text-dark mb-2">✍️ Dodaj nowego autora</h1>
+                <p class="text-muted fs-5">Zarejestruj nowego twórcę do naszej bazy</p>
+            </div>
+
+            <!-- Karta formularza -->
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="card-header bg-gradient text-white p-4 border-0">
+                    <h5 class="mb-0 fw-bold">📋 Dane autora</h5>
+                </div>
+                <div class="card-body p-5">
+                    <form asp-action="AddAuthor" method="post" novalidate>
+                        @Html.AntiForgeryToken()
+                        
+                        <!-- Walidacja podsumowanie -->
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show rounded-3 mb-4" role="alert">
+                                <strong>⚠️ Błąd!</strong> Sprawdź poprawność danych w formularzu.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+
+                        <!-- Imię -->
+                        <div class="form-group mb-4">
+                            <label class="form-label fw-semibold text-dark mb-2">
+                                👤 Imię <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="FirstName" class="form-control form-control-lg rounded-3 border-2" 
+                                   placeholder="Wpisz imię autora..." />
+                            <span asp-validation-for="FirstName" class="text-danger small d-block mt-2"></span>
+                        </div>
+
+                        <!-- Nazwisko -->
+                        <div class="form-group mb-5">
+                            <label class="form-label fw-semibold text-dark mb-2">
+                                👤 Nazwisko <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="LastName" class="form-control form-control-lg rounded-3 border-2" 
+                                   placeholder="Wpisz nazwisko autora..." />
+                            <span asp-validation-for="LastName" class="text-danger small d-block mt-2"></span>
+                        </div>
+
+                        <!-- Przyciski -->
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold rounded-3 flex-md-grow-1">
+                                ✓ Dodaj autora
+                            </button>
+                            <a asp-action="AddBook" class="btn btn-outline-secondary btn-lg fw-bold rounded-3">
+                                ← Anuluj
+                            </a>
+                        </div>
+
+                        <!-- Link do innych opcji -->
+                        <hr class="my-4" />
+                        <div class="text-center small">
+                            <a asp-action="AddBook" class="text-muted text-decoration-none">
+                                ← Powrót do dodawania książki
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #667eea !important;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25) !important;
+    }
+
+    .form-control-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1rem rgba(102, 126, 234, 0.4) !important;
+    }
+
+    .card {
+        border-radius: 1.5rem !important;
+    }
+
+    .text-danger {
+        color: #dc3545;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
