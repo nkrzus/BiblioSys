@@ -18,6 +18,21 @@ namespace BiblioSys.Controllers
             var books = await db.Books.Include(b => b.Author).ToListAsync();
             return View(books);
         }
+
+        public async Task<IActionResult> MyReservations()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login");
+            }
+            var reservations = await db.Reservations
+                .Where(r => r.UserId == userId)
+                .Include(r => r.Book)
+                .ThenInclude(b => b.Author)
+                .ToListAsync();
+            return View(reservations);
+        }
         public IActionResult AddUser() 
         {      
             return View();

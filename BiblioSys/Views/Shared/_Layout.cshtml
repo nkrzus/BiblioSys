@@ -22,9 +22,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="Index">Baza książek</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="UserAccount">Moje konto</a>
-                        </li>
+                        @if (Context.Session.GetInt32("IsAdmin") == 1)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="Reservations">Rezerwacje</a>
+                            </li>
+                        }
+                        else if (Context.Session.GetString("UserEmail") != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="MyReservations">Moje rezerwacje</a>
+                            </li>
+                        }
                         @if (Context.Session.GetString("UserEmail") == null)
                         {
                             <li class="nav-item">
