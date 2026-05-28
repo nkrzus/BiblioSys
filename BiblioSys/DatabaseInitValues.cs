@@ -68,3 +68,8 @@
 //('Gwiezdny bunt', 6, 28, 'Science fiction o rebelii przeciwko tyranicznej władzy. Pełna akcji i dramatycznych momentów. Wciąga od pierwszej strony.', 0),
 //('Świt uczuć', 0, 29, 'Romans o miłości, która rodzi się w najmniej oczekiwanym momencie. Bohaterowie odkrywają, co naprawdę jest ważne. Ciepła i pełna emocji.', 1),
 //('Władcy przyszłości', 6, 30, 'Opowieść o świecie rządzonym przez technologię. Ludzie próbują odzyskać wolność w świecie pełnym kontroli. Dynamiczna i pełna napięcia.', 0);
+
+// DODANIE ADMINA
+
+//insert into users(FirstName, LastName, Email, AccountBalance, Password)
+//values ('admin', 'admin', 'admin@admin.com',0,'admin')
