@@ -1,6 +1,7 @@
 ﻿using Bibliosys;
 using Bibliosys.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace BiblioSys.Controllers
@@ -13,6 +14,7 @@ namespace BiblioSys.Controllers
         {
             db = context;
         }
+
         public async Task<IActionResult> Index()
         {
             var books = await db.Books.Include(b => b.Author).ToListAsync();
@@ -33,8 +35,48 @@ namespace BiblioSys.Controllers
                 .ToListAsync();
             return View(reservations);
         }
-        public IActionResult AddUser() 
-        {      
+
+        public IActionResult Reservations()
+        {
+            ViewBag.BookId = new SelectList(db.Books.Where(b => b.IsFree), "Id", "Title");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
+            return View(new Reservation());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Reservations(Reservation reservation)
+        {
+            reservation.ReservationDate = DateTime.Now;
+            reservation.Status = ReservationStatus.Aktywna;
+
+            ModelState.Remove("Book");
+            ModelState.Remove("User");
+
+            if (ModelState.IsValid)
+            {
+                var book = await db.Books.FindAsync(reservation.BookId);
+                if (book == null || !book.IsFree)
+                {
+                    ModelState.AddModelError("", "Książka jest niedostępna.");
+                    ViewBag.BookId = new SelectList(db.Books.Where(b => b.IsFree), "Id", "Title");
+                    ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
+                    return View(reservation);
+                }
+
+                book.IsFree = false;
+                db.Reservations.Add(reservation);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.BookId = new SelectList(db.Books.Where(b => b.IsFree), "Id", "Title");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
+            return View(reservation);
+        }
+
+        public IActionResult AddUser()
+        {
             return View();
         }
 
@@ -62,7 +104,6 @@ namespace BiblioSys.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddBook(Book book)
         {
-
             if (ModelState.IsValid)
             {
                 db.Books.Add(book);
@@ -79,6 +120,7 @@ namespace BiblioSys.Controllers
         {
             return View();
         }
+
         public ActionResult Login()
         {
             return View();
@@ -89,6 +131,7 @@ namespace BiblioSys.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Login(string email, string password)

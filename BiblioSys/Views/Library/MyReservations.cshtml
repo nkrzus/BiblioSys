@@ -27,6 +27,7 @@
                             <th class="px-4 py-3 fw-semibold text-dark">Data rezerwacji</th>
                             <th class="px-4 py-3 fw-semibold text-dark">Data zwrotu</th>
                             <th class="px-4 py-3 fw-semibold text-dark">Do zapłaty</th>
+                            <th class="px-4 py-3 fw-semibold text-dark">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,20 @@
                                     {
                                         <span class="badge bg-success bg-opacity-10 text-success fw-semibold px-3 py-2">
                                             ✓ Brak opłat
+                                        </span>
+                                    }
+                                </td>
+                                <td class="px-4 py-3">
+                                    @if (item.Status == Bibliosys.Model.ReservationStatus.Aktywna)
+                                    {
+                                        <span class="badge bg-success bg-opacity-10 text-success fw-semibold px-3 py-2">
+                                            ✅ Aktywna
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary fw-semibold px-3 py-2">
+                                            ✔ Zakończona
                                         </span>
                                     }
                                 </td>

@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Bibliosys.Model
 {
+    public enum ReservationStatus
+    {
+        Aktywna,
+        Zakonczona
+    }
+
     public class Reservation
     {
         public int Id { get; set; }
@@ -23,5 +29,7 @@ namespace Bibliosys.Model
         public DateTime? ReturnDate { get; set; }
 
         public double AdditionalFee { get; set; }
+
+        public ReservationStatus Status { get; set; }
     }
 }
