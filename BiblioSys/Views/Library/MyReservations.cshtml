@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Bibliosys.Model.Reservation>
+
+@{
+    ViewData["Title"] = "MyReservations";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-8">
+            <h1 class="display-4 fw-bold text-dark mb-2">📋 Moje rezerwacje</h1>
+            <p class="text-muted fs-5">Przeglądaj swoje aktywne i zakończone wypożyczenia</p>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-gradient text-white p-4 border-0">
+                <h5 class="mb-0 fw-bold">📚 Lista rezerwacji</h5>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="px-4 py-3 fw-semibold text-dark">Autor</th>
+                            <th class="px-4 py-3 fw-semibold text-dark">Tytuł</th>
+                            <th class="px-4 py-3 fw-semibold text-dark">Data rezerwacji</th>
+                            <th class="px-4 py-3 fw-semibold text-dark">Data zwrotu</th>
+                            <th class="px-4 py-3 fw-semibold text-dark">Do zapłaty</th>
+                            <th class="px-4 py-3 fw-semibold text-dark">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="px-4 py-3 text-muted">
+                                    @(item.Book.Author != null ? item.Book.Author.FirstName + " " + item.Book.Author.LastName : "Brak autora")
+                                </td>
+                                <td class="px-4 py-3 fw-semibold text-dark">
+                                    @Html.DisplayFor(modelItem => item.Book.Title)
+                                </td>
+                                <td class="px-4 py-3 text-muted">
+                                    @Html.DisplayFor(modelItem => item.ReservationDate)
+                                </td>
+                                <td class="px-4 py-3 text-muted">
+                                    @Html.DisplayFor(modelItem => item.ReturnDate)
+                                </td>
+                                <td class="px-4 py-3">
+                                    @if (item.AdditionalFee > 0)
+                                    {
+                                        <span class="badge bg-danger bg-opacity-10 text-danger fw-semibold px-3 py-2">
+                                            💸 @Html.DisplayFor(modelItem => item.AdditionalFee) zł
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success bg-opacity-10 text-success fw-semibold px-3 py-2">
+                                            ✓ Brak opłat
+                                        </span>
+                                    }
+                                </td>
+                                <td class="px-4 py-3">
+                                    @if (item.Status == Bibliosys.Model.ReservationStatus.Aktywna)
+                                    {
+                                        <span class="badge bg-success bg-opacity-10 text-success fw-semibold px-3 py-2">
+                                            ✅ Aktywna
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary fw-semibold px-3 py-2">
+                                            ✔ Zakończona
+                                        </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-light border-2 border-info text-center p-5 rounded-3">
+            <h4 class="text-info fw-bold mb-3">📭 Brak rezerwacji!</h4>
+            <p class="text-muted mb-0">Nie masz jeszcze żadnych rezerwacji.</p>
+        </div>
+    }
+</div>
+
+<style>
+    .bg-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .table > :not(caption) > * > * {
+        vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(102, 126, 234, 0.05);
+    }
+
+    .card {
+        border-radius: 1.5rem !important;
+    }
+</style>
