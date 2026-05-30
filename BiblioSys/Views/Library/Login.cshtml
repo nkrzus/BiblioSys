@@ -1,24 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Logowanie";
 }
 
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-5">
-            <div class="mb-5 text-center">
-                <h1 class="display-5 fw-bold text-dark mb-2">📚 Witaj w BiblioSys!</h1>
-                <p class="text-muted fs-5">Zaloguj się, aby korzystać z biblioteki</p>
+            <div class="mb-5">
+                <h1 class="h2 fw-bold text-dark mb-2">Logowanie</h1>
+                <p class="text-muted">Zaloguj się aby korzystać z biblioteki</p>
             </div>
 
-            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-                <div class="card-header bg-gradient text-white p-4 border-0">
-                    <h5 class="mb-0 fw-bold">🔑 Logowanie</h5>
-                </div>
+            <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
                     @if (ViewBag.Error != null)
                     {
-                        <div class="alert alert-danger alert-dismissible fade show rounded-3 mb-4" role="alert">
-                            <strong>⚠️ Błąd!</strong> @ViewBag.Error
+                        <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                            <strong>Błąd logowania</strong> - @ViewBag.Error
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     }
@@ -26,34 +23,33 @@
                     <form asp-action="Login" method="post" novalidate>
                         @Html.AntiForgeryToken()
 
-                        <div class="form-group mb-4">
+                        <div class="mb-4">
                             <label class="form-label fw-semibold text-dark mb-2">
-                                📧 Email <span class="text-danger">*</span>
+                                Email <span class="text-danger">*</span>
                             </label>
-                            <input type="email" name="email" class="form-control form-control-lg rounded-3 border-2"
-                                   placeholder="przyklad@email.com" required />
+                            <input type="email" name="email" class="form-control" 
+                                   placeholder="adres@email.com" required />
                         </div>
 
-                        <div class="form-group mb-5">
+                        <div class="mb-4">
                             <label class="form-label fw-semibold text-dark mb-2">
-                                🔒 Hasło <span class="text-danger">*</span>
+                                Hasło <span class="text-danger">*</span>
                             </label>
                             <div class="input-group">
-                                <input id="password" type="password" name="password"
-                                       class="form-control form-control-lg rounded-start-3 border-2"
+                                <input id="password" type="password" name="password" class="form-control" 
                                        placeholder="Wpisz hasło..." required />
-                                <button type="button" class="btn btn-outline-secondary fw-bold rounded-end-3" onclick="togglePassword()">
-                                    👁
+                                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
+                                    Pokaż
                                 </button>
                             </div>
                         </div>
 
-                        <div class="d-grid gap-2 d-md-flex">
-                            <button type="submit" class="btn btn-primary btn-lg fw-bold rounded-3 flex-md-grow-1">
-                                ✓ Zaloguj się
+                        <div class="d-grid gap-2 d-md-flex mt-5">
+                            <button type="submit" class="btn btn-primary fw-semibold flex-md-grow-1">
+                                Zaloguj się
                             </button>
-                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg fw-bold rounded-3">
-                                ← Anuluj
+                            <a asp-action="Index" class="btn btn-outline-secondary fw-semibold">
+                                Anuluj
                             </a>
                         </div>
                     </form>
@@ -61,7 +57,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <a asp-action="AddUser" class="text-muted text-decoration-none">
+                <a asp-action="AddUser" class="text-muted text-decoration-none small">
                     Nie masz konta? Zarejestruj się!
                 </a>
             </div>
@@ -70,33 +66,24 @@
 </div>
 
 <style>
-    .bg-gradient {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    .form-control:focus {
-        border-color: #667eea !important;
-        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25) !important;
-    }
-
-    .form-control-lg {
-        font-size: 1rem;
-        padding: 0.75rem 1rem;
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
     }
 
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 0.5rem 1rem rgba(102, 126, 234, 0.4) !important;
-        }
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        border-color: #0b5ed7;
+    }
 
     .card {
-        border-radius: 1.5rem !important;
+        border-radius: 0.375rem;
     }
 </style>
 

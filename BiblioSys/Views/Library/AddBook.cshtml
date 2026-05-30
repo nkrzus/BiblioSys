@@ -1,22 +1,22 @@
 ﻿@model Bibliosys.Model.Book
 
 @{
-    ViewData["Title"] = "AddBook";
+    ViewData["Title"] = "Dodaj książkę";
 }
 
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <!-- Nagłówek -->
-            <div class="mb-5 text-center">
-                <h1 class="display-5 fw-bold text-dark mb-2">📖 Dodaj nową książkę</h1>
-                <p class="text-muted fs-5">Rozszerz naszą kolekcję o nowy tytuł</p>
+            <div class="mb-5">
+                <h1 class="h2 fw-bold text-dark mb-2">Dodaj nową książkę</h1>
+                <p class="text-muted">Uzupełnij szczegóły nowej pozycji w kolekcji</p>
             </div>
 
             <!-- Karta formularza -->
-            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-                <div class="card-header bg-gradient text-white p-4 border-0">
-                    <h5 class="mb-0 fw-bold">📝 Formularz dodawania książki</h5>
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light py-3 px-4 border-bottom">
+                    <h5 class="mb-0 fw-semibold text-dark">Informacje o książce</h5>
                 </div>
                 <div class="card-body p-4">
                     <form asp-action="AddBook" method="post" novalidate>
@@ -25,41 +25,39 @@
                         <!-- Walidacja podsumowanie -->
                         @if (!ViewData.ModelState.IsValid)
                         {
-                            <div class="alert alert-danger alert-dismissible fade show rounded-3 mb-4" role="alert">
-                                <strong>⚠️ Błąd!</strong> Sprawdź poprawność danych w formularzu.
+                            <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                                <strong>Błąd walidacji</strong> - Sprawdź poprawność danych w formularzu.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         }
 
                         <!-- Tytuł -->
-                        <div class="form-group mb-4">
+                        <div class="mb-4">
                             <label class="form-label fw-semibold text-dark mb-2">
-                                📚 Tytuł <span class="text-danger">*</span>
+                                Tytuł <span class="text-danger">*</span>
                             </label>
-                            <input asp-for="Title" class="form-control form-control-lg rounded-3 border-2" 
-                                   placeholder="Wpisz tytuł książki..." />
-                            <span asp-validation-for="Title" class="text-danger small d-block mt-2"></span>
+                            <input asp-for="Title" class="form-control" placeholder="Wpisz tytuł książki..." />
+                            <span asp-validation-for="Title" class="text-danger small d-block mt-1"></span>
                         </div>
 
                         <!-- Kategoria -->
-                        <div class="form-group mb-4">
+                        <div class="mb-4">
                             <label class="form-label fw-semibold text-dark mb-2">
-                                📂 Kategoria <span class="text-danger">*</span>
+                                Kategoria <span class="text-danger">*</span>
                             </label>
-                            <select asp-for="Category" class="form-select form-select-lg rounded-3 border-2" 
-                                    asp-items="Html.GetEnumSelectList<BiblioSys.Enums.Category>()">
+                            <select asp-for="Category" class="form-select" asp-items="Html.GetEnumSelectList<BiblioSys.Enums.Category>()">
                                 <option value="">-- Wybierz kategorię --</option>
                             </select>
-                            <span asp-validation-for="Category" class="text-danger small d-block mt-2"></span>
+                            <span asp-validation-for="Category" class="text-danger small d-block mt-1"></span>
                         </div>
 
                         <!-- Autor -->
-                        <div class="form-group mb-4">
+                        <div class="mb-4">
                             <label class="form-label fw-semibold text-dark mb-2">
-                                ✍️ Autor <span class="text-danger">*</span>
+                                Autor <span class="text-danger">*</span>
                             </label>
                             <div class="input-group">
-                                <select asp-for="AuthorId" class="form-select form-select-lg rounded-start-3 border-2">
+                                <select asp-for="AuthorId" class="form-select">
                                     <option value="">-- Wybierz autora --</option>
                                     @if (ViewBag.Authors != null)
                                     {
@@ -69,41 +67,40 @@
                                         }
                                     }
                                 </select>
-                                <a asp-action="AddAuthor" class="btn btn-outline-primary fw-bold rounded-end-3" title="Dodaj nowego autora">
-                                    ➕
+                                <a asp-action="AddAuthor" class="btn btn-outline-secondary" title="Dodaj nowego autora">
+                                    Dodaj autora
                                 </a>
                             </div>
-                            <span asp-validation-for="AuthorId" class="text-danger small d-block mt-2"></span>
+                            <span asp-validation-for="AuthorId" class="text-danger small d-block mt-1"></span>
                         </div>
 
                         <!-- Opis -->
-                        <div class="form-group mb-4">
+                        <div class="mb-4">
                             <label class="form-label fw-semibold text-dark mb-2">
-                                💬 Opis <span class="text-muted">(opcjonalnie)</span>
+                                Opis <span class="text-muted">(opcjonalnie)</span>
                             </label>
-                            <textarea asp-for="Description" class="form-control form-control-lg rounded-3 border-2" 
-                                      rows="5" placeholder="Wpisz krótki opis książki..."></textarea>
-                            <small class="text-muted d-block mt-2">Maks. 2000 znaków</small>
-                            <span asp-validation-for="Description" class="text-danger small d-block mt-2"></span>
+                            <textarea asp-for="Description" class="form-control" rows="5" placeholder="Wpisz krótki opis książki..."></textarea>
+                            <small class="text-muted d-block mt-1">Maks. 2000 znaków</small>
+                            <span asp-validation-for="Description" class="text-danger small d-block mt-1"></span>
                         </div>
 
                         <!-- Dostępność -->
-                        <div class="form-group mb-5">
+                        <div class="mb-4">
                             <div class="form-check form-switch">
-                                <input type="checkbox" asp-for="IsFree" class="form-check-input" id="IsFree" style="width: 3rem; height: 1.5rem;" />
+                                <input type="checkbox" asp-for="IsFree" class="form-check-input" id="IsFree" />
                                 <label class="form-check-label fw-semibold text-dark" for="IsFree">
-                                    ✓ Książka jest dostępna
+                                    Książka jest dostępna
                                 </label>
                             </div>
                         </div>
 
                         <!-- Przyciski -->
-                        <div class="d-grid gap-2 d-md-flex">
-                            <button type="submit" class="btn btn-primary btn-lg fw-bold rounded-3 flex-md-grow-1">
-                                ✓ Dodaj książkę
+                        <div class="d-grid gap-2 d-md-flex mt-5">
+                            <button type="submit" class="btn btn-primary fw-semibold flex-md-grow-1">
+                                Dodaj książkę
                             </button>
-                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg fw-bold rounded-3">
-                                ← Anuluj
+                            <a asp-action="Index" class="btn btn-outline-secondary fw-semibold">
+                                Anuluj
                             </a>
                         </div>
                     </form>
@@ -112,8 +109,8 @@
 
             <!-- Powrót -->
             <div class="text-center mt-4">
-                <a asp-action="Index" class="text-muted text-decoration-none">
-                    ← Powrót do biblioteki
+                <a asp-action="Index" class="text-muted text-decoration-none small">
+                    Powrót do biblioteki
                 </a>
             </div>
         </div>
@@ -121,49 +118,29 @@
 </div>
 
 <style>
-    .bg-gradient {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
     .form-control:focus,
     .form-select:focus {
-        border-color: #667eea !important;
-        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25) !important;
-    }
-
-    .form-control-lg,
-    .form-select-lg {
-        font-size: 1rem;
-        padding: 0.75rem 1rem;
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
     }
 
     .btn-primary:hover {
-        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 0.5rem 1rem rgba(102, 126, 234, 0.4) !important;
-    }
-
-    .form-check-input:checked {
-        background-color: #667eea;
-        border-color: #667eea;
-    }
-
-    .form-check-input:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+        background-color: #0b5ed7;
+        border-color: #0b5ed7;
     }
 
     .card {
-        border-radius: 1.5rem !important;
+        border-radius: 0.375rem;
     }
 
-    .text-danger {
-        color: #dc3545;
+    .form-check-input:checked {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
     }
 </style>
 

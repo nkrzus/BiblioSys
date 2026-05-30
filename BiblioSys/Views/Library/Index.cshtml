@@ -5,20 +5,30 @@
 }
 
 <div class="container mt-5 mb-5">
-    <div class="row mb-5 align-items-center">
-        <div class="col-md-8">
-            <h1 class="display-4 fw-bold text-dark mb-2">📚 Biblioteka Książek</h1>
-            <p class="text-muted fs-5">Przeglądaj naszą bogatą kolekcję książek</p>
-        </div>
-        <div class="col-md-4 text-end">
-            @if (Context.Session.GetInt32("IsAdmin") == 1)
-            {
-                <a asp-action="AddBook" class="btn btn-primary btn-lg fw-bold rounded-pill px-4">
-                    <span>➕</span> Dodaj nową książkę
+    <!-- Sekcja zarządzania -->
+    @if (Context.Session.GetInt32("IsAdmin") == 1)
+    {
+        <div class="row mb-5 pb-4 border-bottom">
+            <div class="col-md-8">
+                <h2 class="h4 fw-bold text-dark mb-2">Kolekcja książek</h2>
+                <p class="text-muted mb-0">Wszystkie pozycje w naszej bibliotece</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <a asp-action="AddBook" class="btn btn-primary fw-semibold">
+                    Dodaj nową książkę
                 </a>
-            }
+            </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="row mb-5 pb-4 border-bottom">
+            <div class="col-12">
+                <h2 class="h4 fw-bold text-dark mb-2">Dostępne książki</h2>
+                <p class="text-muted mb-0">Przeglądaj naszą bogatą kolekcję</p>
+            </div>
+        </div>
+    }
 
     @if (Model.Any())
     {
@@ -26,44 +36,45 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0 hover-shadow rounded-3 overflow-hidden">
-                        <div class="card-body p-4">
-                            <!-- Tytuł książki -->
-                            <h5 class="card-title fw-bold text-dark mb-3" style="font-size: 1.2rem; line-height: 1.4;">
+                    <div class="card h-100 border-0 shadow-sm book-card">
+                        <div class="card-body d-flex flex-column">
+                            <!-- Tytuł -->
+                            <h5 class="card-title fw-bold text-dark mb-3 flex-grow-0" style="font-size: 1.1rem; line-height: 1.5; min-height: 2.2em;">
                                 @Html.DisplayFor(modelItem => item.Title)
                             </h5>
 
-                            <!-- Kategoria i Dostępność -->
-                            <div class="mb-3 d-flex flex-wrap gap-2">
-                                <span class="badge bg-info bg-opacity-10 text-info fw-semibold px-3 py-2">
-                                    📖 @Html.DisplayFor(modelItem => item.Category)
-                                </span>
+                            <!-- Metadane -->
+                            <div class="mb-3 small">
+                                <div class="mb-2">
+                                    <span class="badge bg-light text-dark border border-secondary">
+                                        @Html.DisplayFor(modelItem => item.Category)
+                                    </span>
+                                </div>
+                                <div class="text-muted">
+                                    <strong>Autor:</strong> @(item.Author != null ? item.Author.FirstName + " " + item.Author.LastName : "Brak autora")
+                                </div>
+                            </div>
+
+                            <!-- Status dostępności -->
+                            <div class="mb-3">
                                 @if (item.IsFree)
                                 {
-                                    <span class="badge bg-success bg-opacity-10 text-success fw-semibold px-3 py-2">
-                                        ✓ Dostępna
+                                    <span class="badge bg-success bg-opacity-10 text-success fw-semibold">
+                                        Dostępna
                                     </span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-danger bg-opacity-10 text-danger fw-semibold px-3 py-2">
-                                        ✗ Wypożyczona
+                                    <span class="badge bg-danger bg-opacity-10 text-danger fw-semibold">
+                                        Wypożyczona
                                     </span>
                                 }
                             </div>
 
-                            <hr class="my-3" />
-
-                            <!-- Autor -->
-                            <p class="mb-3 small">
-                                <strong class="text-dark">Autor:</strong>
-                                <span class="text-muted">
-                                    @(item.Author != null ? item.Author.FirstName + " " + item.Author.LastName : "Brak autora")
-                                </span>
-                            </p>
+                            <hr class="my-2" />
 
                             <!-- Opis -->
-                            <p class="card-text text-muted small" style="line-height: 1.6;">
+                            <p class="card-text text-muted small flex-grow-1" style="line-height: 1.5;">
                                 @if (!string.IsNullOrEmpty(item.Description))
                                 {
                                     if (item.Description.Length > 120)
@@ -88,37 +99,32 @@
     }
     else
     {
-        <div class="alert alert-light border-2 border-info text-center p-5 rounded-3">
-            <h4 class="text-info fw-bold mb-3">📭 Biblioteka jest pusta!</h4>
-            <p class="text-muted mb-4">Nie ma jeszcze żadnych książek. Dodaj pierwszą!</p>
-            <a asp-action="AddBook" class="btn btn-primary btn-lg fw-bold rounded-pill px-5">
-                <span>➕</span> Dodaj pierwszą książkę
-            </a>
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto text-center py-5">
+                <h4 class="text-dark fw-bold mb-3">Brak książek w bibliotece</h4>
+                <p class="text-muted mb-5">Biblioteka jest obecnie pusta. Zaloguj się na konto administratora, aby dodać pierwszą pozycję.</p>
+                <a asp-action="Login" class="btn btn-primary fw-semibold me-2">
+                    Zaloguj się
+                </a>
+                <a asp-action="AddUser" class="btn btn-outline-primary fw-semibold">
+                    Utwórz konto
+                </a>
+            </div>
         </div>
     }
 </div>
 
 <style>
-    .hover-shadow {
-        transition: all 0.3s ease-in-out;
-        transform: translateY(0);
+    .book-card {
+        border-radius: 0.5rem;
+        transition: all 0.2s ease-in-out;
     }
 
-    .hover-shadow:hover {
-        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
-        transform: translateY(-5px);
+    .book-card:hover {
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1) !important;
     }
 
-    .card-footer a {
-        transition: all 0.3s ease;
-    }
-
-    .card-footer a:hover {
-        background-color: #0d6efd !important;
-        color: white !important;
-    }
-
-    .display-4 {
-        letter-spacing: -1px;
+    .card-body {
+        padding: 1.5rem;
     }
 </style>
