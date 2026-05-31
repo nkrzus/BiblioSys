@@ -8,7 +8,6 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
 
-            <!-- Karta formularza -->
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-light py-3 px-4 border-bottom">
                     <h5 class="mb-0 fw-semibold text-dark">Informacje o rezerwacji</h5>
@@ -26,7 +25,6 @@
                             </div>
                         }
 
-                        <!-- Książka -->
                         <div class="mb-4">
                             <label asp-for="BookId" class="form-label fw-semibold text-dark mb-2">
                                 Książka <span class="text-danger">*</span>
@@ -39,7 +37,6 @@
                             <span asp-validation-for="BookId" class="text-danger small d-block mt-1"></span>
                         </div>
 
-                        <!-- Użytkownik -->
                         <div class="mb-4">
                             <label asp-for="UserId" class="form-label fw-semibold text-dark mb-2">
                                 Użytkownik <span class="text-danger">*</span>
@@ -54,7 +51,6 @@
 
                         <input type="hidden" asp-for="ReservationDate" />
 
-                        <!-- Data zwrotu -->
                         <div class="mb-4">
                             <label asp-for="ReturnDate" class="form-label fw-semibold text-dark mb-2">
                                 Data zwrotu
@@ -63,7 +59,6 @@
                             <span asp-validation-for="ReturnDate" class="text-danger small d-block mt-1"></span>
                         </div>
 
-                        <!-- Dodatkowa opłata -->
                         <div class="mb-4">
                             <label asp-for="AdditionalFee" class="form-label fw-semibold text-dark mb-2">
                                 Dodatkowa opłata
@@ -74,7 +69,6 @@
                             <span asp-validation-for="AdditionalFee" class="text-danger small d-block mt-1"></span>
                         </div>
 
-                        <!-- Przyciski -->
                         <div class="d-grid gap-2 d-md-flex mt-5">
                             <button type="submit" class="btn btn-primary fw-semibold flex-md-grow-1">
                                 Zapisz rezerwację
@@ -88,7 +82,6 @@
                 </div>
             </div>
 
-            <!-- Powrót -->
             <div class="text-center mt-4">
                 <a asp-action="Index"
                        class="text-muted text-decoration-none small">
