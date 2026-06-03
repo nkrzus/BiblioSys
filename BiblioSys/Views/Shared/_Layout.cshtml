@@ -22,33 +22,33 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="Index">Baza książek</a>
                         </li>
-                        @if (Context.Session.GetInt32("IsAdmin") == 1)
+                        @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="Reservations">Rezerwacje</a>
                             </li>
                         }
-                        else if (Context.Session.GetString("UserEmail") != null)
+                        else if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="MyReservations">Moje rezerwacje</a>
                             </li>
                         }
-                        @if (Context.Session.GetString("UserEmail") == null)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Library" asp-action="Login">Logowanie</a>
-                            </li>
-                        }
                     </ul>
                     <div class="d-flex align-items-center gap-3">
-                        @if (Context.Session.GetString("UserEmail") != null)
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <span class="text-muted fw-semibold">
-                                👤 @Context.Session.GetString("UserEmail")
+                                👤 @User.Identity.Name
                             </span>
                             <a asp-controller="Library" asp-action="Logout" class="btn btn-outline-danger btn-sm fw-bold rounded-pill px-3">
                                 Wyloguj
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Library" asp-action="Login" class="btn btn-outline-primary btn-sm fw-bold rounded-pill px-3">
+                                Zaloguj się
                             </a>
                         }
                     </div>
