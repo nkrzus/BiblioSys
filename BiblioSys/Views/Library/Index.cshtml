@@ -5,7 +5,7 @@
 }
 
 <div class="container mt-5 mb-5">
-    @if (Context.Session.GetInt32("IsAdmin") == 1)
+    @if (User.IsInRole("Admin"))
     {
         <div class="row mb-5 pb-4 border-bottom">
             <div class="col-md-8">

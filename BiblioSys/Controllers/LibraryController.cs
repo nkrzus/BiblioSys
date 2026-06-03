@@ -1,8 +1,12 @@
 ﻿using Bibliosys;
 using Bibliosys.Model;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace BiblioSys.Controllers
 {
@@ -21,13 +25,10 @@ namespace BiblioSys.Controllers
             return View(books);
         }
 
+        [Authorize]
         public async Task<IActionResult> MyReservations()
         {
-            int? userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
-            {
-                return RedirectToAction("Login");
-            }
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             var reservations = await db.Reservations
                 .Where(r => r.UserId == userId)
                 .Include(r => r.Book)
@@ -36,6 +37,7 @@ namespace BiblioSys.Controllers
             return View(reservations);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Reservations()
         {
             ViewBag.BookId = new SelectList(db.Books.Where(b => b.IsFree), "Id", "Title");
@@ -45,11 +47,11 @@ namespace BiblioSys.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Reservations(Reservation reservation)
         {
             reservation.ReservationDate = DateTime.Now;
             reservation.Status = ReservationStatus.Aktywna;
-
             ModelState.Remove("Book");
             ModelState.Remove("User");
 
@@ -63,7 +65,6 @@ namespace BiblioSys.Controllers
                     ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
                     return View(reservation);
                 }
-
                 book.IsFree = false;
                 db.Reservations.Add(reservation);
                 await db.SaveChangesAsync();
@@ -75,10 +76,7 @@ namespace BiblioSys.Controllers
             return View(reservation);
         }
 
-        public IActionResult AddUser()
-        {
-            return View();
-        }
+        public IActionResult AddUser() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -93,15 +91,16 @@ namespace BiblioSys.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult AddBook()
         {
-            var authors = db.Authors.ToList();
-            ViewBag.Authors = authors;
+            ViewBag.Authors = db.Authors.ToList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddBook(Book book)
         {
             if (ModelState.IsValid)
@@ -110,46 +109,16 @@ namespace BiblioSys.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
-            var authors = await db.Authors.ToListAsync();
-            ViewBag.Authors = authors;
+            ViewBag.Authors = await db.Authors.ToListAsync();
             return View(book);
         }
 
-        public IActionResult AddAuthor()
-        {
-            return View();
-        }
-
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Index");
-        }
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddAuthor() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(string email, string password)
-        {
-            var user = db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
-            if (user == null)
-            {
-                ViewBag.Error = "Nieprawidłowy adres e-mail lub hasło.";
-                return View();
-            }
-            HttpContext.Session.SetInt32("UserId", user.Id);
-            HttpContext.Session.SetString("UserEmail", user.Email);
-            HttpContext.Session.SetInt32("IsAdmin", user.IsAdmin ? 1 : 0);
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddAuthor(Author author)
         {
             if (ModelState.IsValid)
@@ -159,6 +128,52 @@ namespace BiblioSys.Controllers
                 return RedirectToAction("AddBook");
             }
             return View(author);
+        }
+
+        public IActionResult Login() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(string email, string password)
+        {
+            var user = db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            if (user == null)
+            {
+                ViewBag.Error = "Nieprawidłowy adres e-mail lub hasło.";
+                return View();
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                new Claim(ClaimTypes.Email, user.Email),
+            };
+
+            if (user.IsAdmin)
+                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+
+            var claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = false,
+                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60)
+            };
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index");
         }
     }
 }
