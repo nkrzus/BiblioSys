@@ -175,5 +175,21 @@ namespace BiblioSys.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminPanel()
+        {
+            var reservations = await db.Reservations
+                .Include(r => r.Book)
+                    .ThenInclude(b => b.Author)
+                .Include(r => r.User)
+                // don't show reservations that already have a return date
+                .Where(r => r.ReturnDate == null)
+                .ToListAsync();
+
+            var users = await db.Users.ToListAsync();
+            ViewBag.Users = users;
+            return View(reservations);
+        }
     }
 }
