@@ -31,6 +31,7 @@
                                     <th>Data zwrotu</th>
                                     <th>Opłata</th>
                                     <th>Status</th>
+                                    <th>Akcje</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,6 +62,13 @@
                                                 <span class="badge bg-secondary bg-opacity-10 text-secondary">Zakończona</span>
                                             }
                                         </td>
+                                    <td class="align-middle">
+                                        <form asp-action="ReturnBook" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@r.Id" />
+                                            <button type="submit" class="btn btn-sm btn-outline-success">Zwróć książkę</button>
+                                        </form>
+                                    </td>
                                     </tr>
                                 }
                             </tbody>

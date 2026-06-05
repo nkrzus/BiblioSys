@@ -37,6 +37,24 @@ namespace BiblioSys.Controllers
             return View(reservations);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ReturnBook(int id)
+        {
+            var reservation = await db.Reservations.Include(r => r.Book).FirstOrDefaultAsync(r => r.Id == id);
+            if (reservation == null)
+                return NotFound();
+
+            reservation.ReturnDate = DateTime.Now;
+            reservation.Status = ReservationStatus.Zakonczona;
+            if (reservation.Book != null)
+                reservation.Book.IsFree = true;
+
+            await db.SaveChangesAsync();
+            return RedirectToAction("AdminPanel");
+        }
+
         [Authorize(Roles = "Admin")]
         public IActionResult Reservations()
         {
