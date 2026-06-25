@@ -12,7 +12,6 @@
         </div>
         <div class="col-md-4 text-end">
             <a asp-action="Reservations" class="btn btn-primary fw-semibold">Nowa rezerwacja</a>
-            <a asp-action="AddBook" class="btn btn-outline-secondary fw-semibold ms-2">Dodaj książkę</a>
         </div>
     </div>
 
@@ -37,7 +36,7 @@
                                 @foreach (var r in Model)
                                 {
                                     <tr>
-                                        <td class="align-middle fw-semibold">@r.Book?.Title</td>
+                                        <td class="align-middle">@(r.Book?.Title)</td>
                                         <td class="align-middle">@(r.Book?.Author != null ? r.Book.Author.FirstName + " " + r.Book.Author.LastName : "-")</td>
                                         <td class="align-middle">@(r.User != null ? r.User.Email : "-")</td>
                                         <td class="align-middle">@r.ReservationDate.ToString("dd.MM.yyyy")</td>
@@ -92,7 +91,21 @@
                                     <div class="fw-semibold">@u.FirstName @u.LastName</div>
                                     <div class="small text-muted">@u.Email</div>
                                 </div>
-                                <div class="small text-muted">@((u.IsAdmin) ? "Admin" : "User")</div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="small text-muted">@((u.IsAdmin) ? "Admin" : "User")</div>
+                                    <form asp-action="ToggleAdminRole" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@u.Id" />
+                                        @if (u.IsAdmin)
+                                        {
+                                            <button type="submit" class="btn btn-sm btn-outline-warning">Odbierz uprawnienia</button>
+                                        }
+                                        else
+                                        {
+                                            <button type="submit" class="btn btn-sm btn-outline-success">Nadaj uprawnienia</button>
+                                        }
+                                    </form>
+                                </div>
                             </li>
                         }
                     </ul>

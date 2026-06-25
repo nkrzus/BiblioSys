@@ -209,5 +209,19 @@ namespace BiblioSys.Controllers
             ViewBag.Users = users;
             return View(reservations);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ToggleAdminRole(int id)
+        {
+            var user = await db.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+
+            user.IsAdmin = !user.IsAdmin;
+            await db.SaveChangesAsync();
+            return RedirectToAction("AdminPanel");
+        }
     }
 }
