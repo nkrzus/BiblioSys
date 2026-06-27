@@ -2,6 +2,12 @@
 
 @{
     ViewData["Title"] = "Panel administratora";
+    int pageR = ViewBag.PageR;
+    int totalPagesR = ViewBag.TotalPagesR;
+    int pageU = ViewBag.PageU;
+    int totalPagesU = ViewBag.TotalPagesU;
+    string searchR = ViewBag.SearchR ?? "";
+    string searchU = ViewBag.SearchU ?? "";
 }
 
 <div class="container mt-5 mb-5">
@@ -18,48 +24,61 @@
     <div class="row g-4">
         <div class="col-12">
             <div class="card shadow-sm border-0">
+                <div class="card-header bg-light py-2 px-3 d-flex align-items-center justify-content-between">
+                    <h6 class="mb-0 fw-semibold">Rezerwacje</h6>
+                    <form method="get" asp-action="AdminPanel" class="d-flex gap-2">
+                        <input type="hidden" name="searchU" value="@searchU" />
+                        <input type="hidden" name="pageU" value="@pageU" />
+                        <input type="text" name="searchR" value="@searchR" class="form-control form-control-sm" placeholder="Szukaj po książce lub użytkowniku..." style="min-width:280px;" />
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Szukaj</button>
+                        @if (!string.IsNullOrEmpty(searchR))
+                        {
+                            <a asp-action="AdminPanel" asp-route-searchU="@searchU" asp-route-pageU="@pageU" class="btn btn-sm btn-outline-secondary">Wyczyść</a>
+                        }
+                    </form>
+                </div>
                 <div class="card-body p-0">
-                        <table class="table table-hover mb-0">
-                            <thead class="table-light">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Książka</th>
+                                <th>Autor</th>
+                                <th>Użytkownik</th>
+                                <th>Data rezerwacji</th>
+                                <th>Data zwrotu</th>
+                                <th>Opłata</th>
+                                <th>Status</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var r in Model)
+                            {
                                 <tr>
-                                    <th>Książka</th>
-                                    <th>Autor</th>
-                                    <th>Użytkownik</th>
-                                    <th>Data rezerwacji</th>
-                                    <th>Data zwrotu</th>
-                                    <th>Opłata</th>
-                                    <th>Status</th>
-                                    <th>Akcje</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var r in Model)
-                                {
-                                    <tr>
-                                        <td class="align-middle">@(r.Book?.Title)</td>
-                                        <td class="align-middle">@(r.Book?.Author != null ? r.Book.Author.FirstName + " " + r.Book.Author.LastName : "-")</td>
-                                        <td class="align-middle">@(r.User != null ? r.User.Email : "-")</td>
-                                        <td class="align-middle">@r.ReservationDate.ToString("dd.MM.yyyy")</td>
-                                        <td class="align-middle">@(r.ReturnDate.HasValue ? r.ReturnDate.Value.ToString("dd.MM.yyyy") : "-")</td>
-                                        <td class="align-middle">@(r.AdditionalFee > 0 ? r.AdditionalFee + " zł" : "Brak opłat")</td>
-                                        <td class="align-middle">
-                                            @{
-                                                var days = (DateTime.Now - r.ReservationDate).TotalDays;
-                                                var isOverdue = r.ReturnDate == null && days > 30;
-                                            }
-                                            @if (isOverdue)
-                                            {
-                                                <span class="badge bg-danger bg-opacity-10 text-danger fw-semibold">Przeterminowana</span>
-                                            }
-                                            else if (r.Status == Bibliosys.Model.ReservationStatus.Aktywna)
-                                            {
-                                                <span class="badge bg-success bg-opacity-10 text-success">Aktywna</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge bg-secondary bg-opacity-10 text-secondary">Zakończona</span>
-                                            }
-                                        </td>
+                                    <td class="align-middle">@(r.Book?.Title)</td>
+                                    <td class="align-middle">@(r.Book?.Author != null ? r.Book.Author.FirstName + " " + r.Book.Author.LastName : "-")</td>
+                                    <td class="align-middle">@(r.User != null ? r.User.Email : "-")</td>
+                                    <td class="align-middle">@r.ReservationDate.ToString("dd.MM.yyyy")</td>
+                                    <td class="align-middle">@(r.ReturnDate.HasValue ? r.ReturnDate.Value.ToString("dd.MM.yyyy") : "-")</td>
+                                    <td class="align-middle">@(r.AdditionalFee > 0 ? r.AdditionalFee + " zł" : "Brak opłat")</td>
+                                    <td class="align-middle">
+                                        @{
+                                            var days = (DateTime.Now - r.ReservationDate).TotalDays;
+                                            var isOverdue = r.ReturnDate == null && days > 30;
+                                        }
+                                        @if (isOverdue)
+                                        {
+                                            <span class="badge bg-danger bg-opacity-10 text-danger fw-semibold">Przeterminowana</span>
+                                        }
+                                        else if (r.Status == Bibliosys.Model.ReservationStatus.Aktywna)
+                                        {
+                                            <span class="badge bg-success bg-opacity-10 text-success">Aktywna</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary bg-opacity-10 text-secondary">Zakończona</span>
+                                        }
+                                    </td>
                                     <td class="align-middle">
                                         <form asp-action="ReturnBook" method="post" class="d-inline">
                                             @Html.AntiForgeryToken()
@@ -67,65 +86,114 @@
                                             <button type="submit" class="btn btn-sm btn-outline-success">Zwróć książkę</button>
                                         </form>
                                     </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
+                @if (totalPagesR > 1)
+                {
+                    <div class="card-footer bg-white border-top-0">
+                        <nav>
+                            <ul class="pagination pagination-sm justify-content-center mb-0">
+                                <li class="page-item @(pageR <= 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-action="AdminPanel" asp-route-pageR="@(pageR - 1)" asp-route-searchR="@searchR" asp-route-searchU="@searchU" asp-route-pageU="@pageU">«</a>
+                                </li>
+                                @for (int i = 1; i <= totalPagesR; i++)
+                                {
+                                    <li class="page-item @(i == pageR ? "active" : "")">
+                                        <a class="page-link" asp-action="AdminPanel" asp-route-pageR="@i" asp-route-searchR="@searchR" asp-route-searchU="@searchU" asp-route-pageU="@pageU">@i</a>
+                                    </li>
+                                }
+                                <li class="page-item @(pageR >= totalPagesR ? "disabled" : "")">
+                                    <a class="page-link" asp-action="AdminPanel" asp-route-pageR="@(pageR + 1)" asp-route-searchR="@searchR" asp-route-searchU="@searchU" asp-route-pageU="@pageU">»</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                }
             </div>
         </div>
 
-    <div class="col-12 mt-4">
-        <div class="card shadow-sm border-0">
-            <div class="card-header bg-light py-2 px-3">
-                <h6 class="mb-0 fw-semibold">Lista użytkowników</h6>
-            </div>
-            <div class="card-body p-2">
-                @if (ViewBag.Users != null && ((IEnumerable<dynamic>)ViewBag.Users).Any())
-                {
-                    <ul class="list-group list-group-flush">
-                        @foreach (var u in ViewBag.Users)
+        <div class="col-12 mt-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light py-2 px-3 d-flex align-items-center justify-content-between">
+                    <h6 class="mb-0 fw-semibold">Lista użytkowników</h6>
+                    <form method="get" asp-action="AdminPanel" class="d-flex gap-2">
+                        <input type="hidden" name="searchR" value="@searchR" />
+                        <input type="hidden" name="pageR" value="@pageR" />
+                        <input type="text" name="searchU" value="@searchU" class="form-control form-control-sm" placeholder="Szukaj po nazwisku lub emailu..." style="min-width:260px;" />
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Szukaj</button>
+                        @if (!string.IsNullOrEmpty(searchU))
                         {
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="fw-semibold">@u.FirstName @u.LastName</div>
-                                    <div class="small text-muted">@u.Email</div>
-                                </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="small text-muted">@((u.IsAdmin) ? "Admin" : "User")</div>
-                                    <form asp-action="ToggleAdminRole" method="post" class="d-inline">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="id" value="@u.Id" />
-                                        @if (u.IsAdmin)
-                                        {
-                                            <button type="submit" class="btn btn-sm btn-outline-warning">Odbierz uprawnienia</button>
-                                        }
-                                        else
-                                        {
-                                            <button type="submit" class="btn btn-sm btn-outline-success">Nadaj uprawnienia</button>
-                                        }
-                                    </form>
-                                </div>
-                            </li>
+                            <a asp-action="AdminPanel" asp-route-searchR="@searchR" asp-route-pageR="@pageR" class="btn btn-sm btn-outline-secondary">Wyczyść</a>
                         }
-                    </ul>
-                }
-                else
+                    </form>
+                </div>
+                <div class="card-body p-2">
+                    @if (ViewBag.Users != null && ((IEnumerable<dynamic>)ViewBag.Users).Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var u in ViewBag.Users)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="fw-semibold">@u.FirstName @u.LastName</div>
+                                        <div class="small text-muted">@u.Email</div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="small text-muted">@((u.IsAdmin) ? "Admin" : "User")</div>
+                                        <form asp-action="ToggleAdminRole" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@u.Id" />
+                                            @if (u.IsAdmin)
+                                            {
+                                                <button type="submit" class="btn btn-sm btn-outline-warning">Odbierz uprawnienia</button>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" class="btn btn-sm btn-outline-success">Nadaj uprawnienia</button>
+                                            }
+                                        </form>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="text-muted small p-3">Brak zarejestrowanych użytkowników.</div>
+                    }
+                </div>
+                @if (totalPagesU > 1)
                 {
-                    <div class="text-muted small p-3">Brak zarejestrowanych użytkowników.</div>
+                    <div class="card-footer bg-white border-top-0">
+                        <nav>
+                            <ul class="pagination pagination-sm justify-content-center mb-0">
+                                <li class="page-item @(pageU <= 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-action="AdminPanel" asp-route-pageU="@(pageU - 1)" asp-route-searchU="@searchU" asp-route-searchR="@searchR" asp-route-pageR="@pageR">«</a>
+                                </li>
+                                @for (int i = 1; i <= totalPagesU; i++)
+                                {
+                                    <li class="page-item @(i == pageU ? "active" : "")">
+                                        <a class="page-link" asp-action="AdminPanel" asp-route-pageU="@i" asp-route-searchU="@searchU" asp-route-searchR="@searchR" asp-route-pageR="@pageR">@i</a>
+                                    </li>
+                                }
+                                <li class="page-item @(pageU >= totalPagesU ? "disabled" : "")">
+                                    <a class="page-link" asp-action="AdminPanel" asp-route-pageU="@(pageU + 1)" asp-route-searchU="@searchU" asp-route-searchR="@searchR" asp-route-pageR="@pageR">»</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 }
             </div>
         </div>
-    </div>
-
-
     </div>
 </div>
 
 <style>
     .card { border-radius: 0.375rem; }
     .table > :not(caption) > * > * { vertical-align: middle; padding: 1rem; }
-    /* Allow table cells to wrap and avoid horizontal scrollbar */
     .table { table-layout: auto; width: 100%; }
     .table td, .table th { white-space: normal; word-break: break-word; }
     .table thead th { white-space: nowrap; }

@@ -1,0 +1,468 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\dev\\BiblioSys\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\library\\addbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\library\\addbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\library\\reservations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\library\\reservations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\controllers\\librarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\controllers\\librarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\library\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\library\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\library\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\library\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\library\\myreservations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\library\\myreservations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\library\\adduser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\library\\adduser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\library\\addauthor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\library\\addauthor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nkrzu\\AppData\\Local\\Temp\\hf4ig1iu..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\databaseinitvalues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\databaseinitvalues.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\dev\\BiblioSys\\SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SQLQuery1.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nkrzu\\AppData\\Local\\Temp\\x1asows1..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\migrations\\20260521205135_addednewpropisadmintouserdatabasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\migrations\\20260521205135_addednewpropisadmintouserdatabasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\migrations\\20260521213352_updateusermodelv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\migrations\\20260521213352_updateusermodelv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|c:\\dev\\bibliosys\\bibliosys\\migrations\\20260521211558_updateusermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAAED202-E1F4-02FF-8407-27142EE61BCA}|BiblioSys\\BiblioSys.csproj|solutionrelative:bibliosys\\migrations\\20260521211558_updateusermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 24,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Models\\Book.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Models\\Book.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Models\\Book.cs",
+              "RelativeToolTip": "BiblioSys\\Models\\Book.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAADwvyMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:17:17.852Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Models\\Reservation.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Models\\Reservation.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Models\\Reservation.cs",
+              "RelativeToolTip": "BiblioSys\\Models\\Reservation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T21:46:02.327Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:141:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:140:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LibraryController.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Controllers\\LibraryController.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Controllers\\LibraryController.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Controllers\\LibraryController.cs",
+              "RelativeToolTip": "BiblioSys\\Controllers\\LibraryController.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAADwv5cAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-28T22:35:55.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Program.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Program.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Program.cs",
+              "RelativeToolTip": "BiblioSys\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-28T20:42:39.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAMzMzMzMrwDgAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-28T21:05:12.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\Index.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\Library\\Index.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\Index.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\Library\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-21T20:34:47.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Reservations.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\Reservations.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\Library\\Reservations.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\Reservations.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\Library\\Reservations.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAwwGYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-31T07:12:54.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Models\\User.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Models\\User.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Models\\User.cs",
+              "RelativeToolTip": "BiblioSys\\Models\\User.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAmwB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:50:03.126Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AddBook.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\AddBook.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\Library\\AddBook.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\AddBook.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\Library\\AddBook.cshtml",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAwwMcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-31T07:13:41.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\Login.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\Library\\Login.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\Login.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\Library\\Login.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-31T07:13:33.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MyReservations.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\MyReservations.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\Library\\MyReservations.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\MyReservations.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\Library\\MyReservations.cshtml",
+              "ViewState": "AgIAABQAAABAZ2ZmZuYcwA8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-31T07:12:40.012Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AddUser.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\AddUser.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\Library\\AddUser.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\AddUser.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\Library\\AddUser.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-21T20:56:26.321Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AddAuthor.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\AddAuthor.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\Library\\AddAuthor.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\Library\\AddAuthor.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\Library\\AddAuthor.cshtml",
+              "ViewState": "AgIAACgAAACAZmZmZmYkwDgAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-28T20:23:58.926Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Author.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Models\\Author.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Models\\Author.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Models\\Author.cs",
+              "RelativeToolTip": "BiblioSys\\Models\\Author.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:44:25.316Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DatabaseContext.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\DatabaseContext.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\DatabaseContext.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\DatabaseContext.cs",
+              "RelativeToolTip": "BiblioSys\\DatabaseContext.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-28T22:41:54.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "20260521205135_AddedNewPropIsAdminToUserDatabaseModel.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Migrations\\20260521205135_AddedNewPropIsAdminToUserDatabaseModel.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Migrations\\20260521205135_AddedNewPropIsAdminToUserDatabaseModel.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Migrations\\20260521205135_AddedNewPropIsAdminToUserDatabaseModel.cs",
+              "RelativeToolTip": "BiblioSys\\Migrations\\20260521205135_AddedNewPropIsAdminToUserDatabaseModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:51:36.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "hf4ig1iu..sql",
+              "DocumentMoniker": "C:\\Users\\nkrzu\\AppData\\Local\\Temp\\hf4ig1iu..sql",
+              "RelativeDocumentMoniker": "..\\..\\Users\\nkrzu\\AppData\\Local\\Temp\\hf4ig1iu..sql",
+              "ToolTip": "C:\\Users\\nkrzu\\AppData\\Local\\Temp\\hf4ig1iu..sql",
+              "RelativeToolTip": "..\\..\\Users\\nkrzu\\AppData\\Local\\Temp\\hf4ig1iu..sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-05-28T21:52:20.238Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-28T21:04:26.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "BiblioSys\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "BiblioSys\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-28T21:04:27.936Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "x1asows1..sql",
+              "DocumentMoniker": "C:\\Users\\nkrzu\\AppData\\Local\\Temp\\x1asows1..sql",
+              "RelativeDocumentMoniker": "..\\..\\Users\\nkrzu\\AppData\\Local\\Temp\\x1asows1..sql",
+              "ToolTip": "C:\\Users\\nkrzu\\AppData\\Local\\Temp\\x1asows1..sql",
+              "RelativeToolTip": "..\\..\\Users\\nkrzu\\AppData\\Local\\Temp\\x1asows1..sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-05-21T21:17:02.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "SQLQuery1.sql",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\SQLQuery1.sql",
+              "RelativeDocumentMoniker": "SQLQuery1.sql",
+              "ToolTip": "C:\\dev\\BiblioSys\\SQLQuery1.sql",
+              "RelativeToolTip": "SQLQuery1.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-05-28T20:35:04.27Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DatabaseInitValues.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\DatabaseInitValues.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\DatabaseInitValues.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\DatabaseInitValues.cs",
+              "RelativeToolTip": "BiblioSys\\DatabaseInitValues.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAgwEoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-28T20:38:03.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "20260521213352_UpdateUserModelv2.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Migrations\\20260521213352_UpdateUserModelv2.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Migrations\\20260521213352_UpdateUserModelv2.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Migrations\\20260521213352_UpdateUserModelv2.cs",
+              "RelativeToolTip": "BiblioSys\\Migrations\\20260521213352_UpdateUserModelv2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T21:33:52.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "20260521211558_UpdateUserModel.cs",
+              "DocumentMoniker": "C:\\dev\\BiblioSys\\BiblioSys\\Migrations\\20260521211558_UpdateUserModel.cs",
+              "RelativeDocumentMoniker": "BiblioSys\\Migrations\\20260521211558_UpdateUserModel.cs",
+              "ToolTip": "C:\\dev\\BiblioSys\\BiblioSys\\Migrations\\20260521211558_UpdateUserModel.cs",
+              "RelativeToolTip": "BiblioSys\\Migrations\\20260521211558_UpdateUserModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T21:15:58.371Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -26,54 +26,45 @@
                         }
 
                         <div class="mb-4">
-                            <label asp-for="BookId" class="form-label fw-semibold text-dark mb-2">
+                            <label class="form-label fw-semibold text-dark mb-2">
                                 Książka <span class="text-danger">*</span>
                             </label>
-                            <select asp-for="BookId"
-                                    class="form-select"
-                                    asp-items="ViewBag.BookId">
-                                <option value="">-- Wybierz książkę --</option>
-                            </select>
-                            <span asp-validation-for="BookId" class="text-danger small d-block mt-1"></span>
+                            <div class="searchable-select" id="bookSelect">
+                                <input type="text" class="form-control search-input" placeholder="Wyszukaj książkę..." autocomplete="off" />
+                                <input type="hidden" name="BookId" id="BookId" />
+                                <span class="text-danger small d-block mt-1" id="BookId-error"></span>
+                                <div class="dropdown-list border rounded bg-white shadow-sm" style="display:none; max-height:220px; overflow-y:auto; position:absolute; z-index:1000; width:100%;">
+                                    @foreach (var item in ViewBag.BookId as IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)
+                                    {
+                                        <div class="dropdown-item-option p-2 px-3" data-value="@item.Value" style="cursor:pointer;">@item.Text</div>
+                                    }
+                                </div>
+                            </div>
                         </div>
 
                         <div class="mb-4">
-                            <label asp-for="UserId" class="form-label fw-semibold text-dark mb-2">
+                            <label class="form-label fw-semibold text-dark mb-2">
                                 Użytkownik <span class="text-danger">*</span>
                             </label>
-                            <select asp-for="UserId"
-                                    class="form-select"
-                                    asp-items="ViewBag.UserId">
-                                <option value="">-- Wybierz użytkownika --</option>
-                            </select>
-                            <span asp-validation-for="UserId" class="text-danger small d-block mt-1"></span>
+                            <div class="searchable-select" id="userSelect">
+                                <input type="text" class="form-control search-input" placeholder="Wyszukaj użytkownika..." autocomplete="off" />
+                                <input type="hidden" name="UserId" id="UserId" />
+                                <span class="text-danger small d-block mt-1" id="UserId-error"></span>
+                                <div class="dropdown-list border rounded bg-white shadow-sm" style="display:none; max-height:220px; overflow-y:auto; position:absolute; z-index:1000; width:100%;">
+                                    @foreach (var item in ViewBag.UserId as IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)
+                                    {
+                                        <div class="dropdown-item-option p-2 px-3" data-value="@item.Value" style="cursor:pointer;">@item.Text</div>
+                                    }
+                                </div>
+                            </div>
                         </div>
 
                         <input type="hidden" asp-for="ReservationDate" />
-
-                        @* <div class="mb-4">
-                            <label asp-for="ReturnDate" class="form-label fw-semibold text-dark mb-2">
-                                Data zwrotu
-                            </label>
-                            <input asp-for="ReturnDate" class="form-control" type="date" />
-                            <span asp-validation-for="ReturnDate" class="text-danger small d-block mt-1"></span>
-                        </div>
-
-                        <div class="mb-4">
-                            <label asp-for="AdditionalFee" class="form-label fw-semibold text-dark mb-2">
-                                Dodatkowa opłata
-                            </label>
-                            <input asp-for="AdditionalFee"
-                                   class="form-control"
-                                   placeholder="0,00" />
-                            <span asp-validation-for="AdditionalFee" class="text-danger small d-block mt-1"></span>
-                        </div> *@
 
                         <div class="d-grid gap-2 d-md-flex mt-5">
                             <button type="submit" class="btn btn-primary fw-semibold flex-md-grow-1">
                                 Zapisz rezerwację
                             </button>
-
                             <a asp-action="Index" class="btn btn-outline-secondary fw-semibold">
                                 Anuluj
                             </a>
@@ -83,8 +74,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <a asp-action="Index"
-                       class="text-muted text-decoration-none small">
+                <a asp-action="Index" class="text-muted text-decoration-none small">
                     Powrót do biblioteki
                 </a>
             </div>
@@ -99,24 +89,76 @@
         border-color: #0d6efd;
         box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
     }
-
-    .btn-primary {
-        background-color: #0d6efd;
-        border-color: #0d6efd;
-    }
-
-        .btn-primary:hover {
-            background-color: #0b5ed7;
-            border-color: #0b5ed7;
-        }
-
-    .card {
-        border-radius: 0.375rem;
-    }
+    .btn-primary { background-color: #0d6efd; border-color: #0d6efd; }
+    .btn-primary:hover { background-color: #0b5ed7; border-color: #0b5ed7; }
+    .card { border-radius: 0.375rem; }
+    .searchable-select { position: relative; }
+    .dropdown-item-option:hover { background-color: #f0f4ff; }
+    .dropdown-item-option.selected { background-color: #e7efff; font-weight: 600; }
 </style>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        document.querySelectorAll(".searchable-select").forEach(function (container) {
+            var input = container.querySelector(".search-input");
+            var hidden = container.querySelector("input[type=hidden]");
+            var list = container.querySelector(".dropdown-list");
+            var options = Array.from(container.querySelectorAll(".dropdown-item-option"));
+
+            input.addEventListener("focus", function () {
+                filterOptions("");
+                list.style.display = "block";
+            });
+
+            input.addEventListener("input", function () {
+                hidden.value = "";
+                filterOptions(input.value);
+                list.style.display = "block";
+            });
+
+            options.forEach(function (opt) {
+                opt.addEventListener("mousedown", function (e) {
+                    e.preventDefault();
+                    hidden.value = opt.dataset.value;
+                    input.value = opt.textContent.trim();
+                    options.forEach(function (o) { o.classList.remove("selected"); });
+                    opt.classList.add("selected");
+                    list.style.display = "none";
+                });
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!container.contains(e.target)) {
+                    list.style.display = "none";
+                    if (!hidden.value) input.value = "";
+                }
+            });
+
+            function filterOptions(query) {
+                var q = query.toLowerCase();
+                options.forEach(function (opt) {
+                    var match = opt.textContent.toLowerCase().includes(q);
+                    opt.style.display = match ? "block" : "none";
+                });
+            }
+        });
+
+        document.querySelector("form").addEventListener("submit", function (e) {
+            var valid = true;
+            ["BookId", "UserId"].forEach(function (id) {
+                var hidden = document.getElementById(id);
+                var err = document.getElementById(id + "-error");
+                if (!hidden.value) {
+                    err.textContent = "To pole jest wymagane.";
+                    valid = false;
+                } else {
+                    err.textContent = "";
+                }
+            });
+            if (!valid) e.preventDefault();
+        });
+    </script>
 }

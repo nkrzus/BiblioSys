@@ -2,32 +2,46 @@
 
 @{
     ViewData["Title"] = "Biblioteka Książek";
+    int page = ViewBag.Page;
+    int totalPages = ViewBag.TotalPages;
+    string search = ViewBag.Search ?? "";
 }
 
 <div class="container mt-5 mb-5">
     @if (User.IsInRole("Admin"))
     {
-        <div class="row mb-5 pb-4 border-bottom">
+        <div class="row mb-4 pb-4 border-bottom align-items-center">
             <div class="col-md-8">
                 <h2 class="h4 fw-bold text-dark mb-2">Kolekcja książek</h2>
                 <p class="text-muted mb-0">Wszystkie pozycje w naszej bibliotece</p>
             </div>
             <div class="col-md-4 text-end">
-                <a asp-action="AddBook" class="btn btn-primary fw-semibold">
-                    Dodaj nową książkę
-                </a>
+                <a asp-action="AddBook" class="btn btn-primary fw-semibold">Dodaj nową książkę</a>
             </div>
         </div>
     }
     else
     {
-        <div class="row mb-5 pb-4 border-bottom">
+        <div class="row mb-4 pb-4 border-bottom">
             <div class="col-12">
                 <h2 class="h4 fw-bold text-dark mb-2">Dostępne książki</h2>
                 <p class="text-muted mb-0">Przeglądaj naszą bogatą kolekcję</p>
             </div>
         </div>
     }
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <form method="get" asp-action="Index" class="d-flex gap-2">
+                <input type="text" name="search" value="@search" class="form-control" placeholder="Szukaj po tytule lub autorze..." />
+                <button type="submit" class="btn btn-outline-primary fw-semibold">Szukaj</button>
+                @if (!string.IsNullOrEmpty(search))
+                {
+                    <a asp-action="Index" class="btn btn-outline-secondary fw-semibold">Wyczyść</a>
+                }
+            </form>
+        </div>
+    </div>
 
     @if (Model.Any())
     {
@@ -55,15 +69,11 @@
                             <div class="mb-3">
                                 @if (item.IsFree)
                                 {
-                                    <span class="badge bg-success bg-opacity-10 text-success fw-semibold">
-                                        Dostępna
-                                    </span>
+                                    <span class="badge bg-success bg-opacity-10 text-success fw-semibold">Dostępna</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-danger bg-opacity-10 text-danger fw-semibold">
-                                        Wypożyczona
-                                    </span>
+                                    <span class="badge bg-danger bg-opacity-10 text-danger fw-semibold">Wypożyczona</span>
                                 }
                             </div>
 
@@ -74,7 +84,8 @@
                                 {
                                     if (item.Description.Length > 120)
                                     {
-                                        @item.Description.Substring(0, 120)<span>...</span>
+                                        @item.Description.Substring(0, 120)
+                                        <span>...</span>
                                     }
                                     else
                                     {
@@ -91,19 +102,44 @@
                 </div>
             }
         </div>
+
+        @if (totalPages > 1)
+        {
+            <nav class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item @(page <= 1 ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(page - 1)" asp-route-search="@search">Poprzednia</a>
+                    </li>
+                    @for (int i = 1; i <= totalPages; i++)
+                    {
+                        <li class="page-item @(i == page ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-search="@search">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(page >= totalPages ? "disabled" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(page + 1)" asp-route-search="@search">Następna</a>
+                    </li>
+                </ul>
+            </nav>
+        }
     }
     else
     {
         <div class="row mt-5">
             <div class="col-md-8 mx-auto text-center py-5">
-                <h4 class="text-dark fw-bold mb-3">Brak książek w bibliotece</h4>
-                <p class="text-muted mb-5">Biblioteka jest obecnie pusta. Zaloguj się na konto administratora, aby dodać pierwszą pozycję.</p>
-                <a asp-action="Login" class="btn btn-primary fw-semibold me-2">
-                    Zaloguj się
-                </a>
-                <a asp-action="AddUser" class="btn btn-outline-primary fw-semibold">
-                    Utwórz konto
-                </a>
+                @if (!string.IsNullOrEmpty(search))
+                {
+                    <h4 class="text-dark fw-bold mb-3">Brak wyników dla „@search"</h4>
+                    <p class="text-muted mb-4">Spróbuj wyszukać inną frazę.</p>
+                    <a asp-action="Index" class="btn btn-outline-primary fw-semibold">Pokaż wszystkie</a>
+                }
+                else
+                {
+                    <h4 class="text-dark fw-bold mb-3">Brak książek w bibliotece</h4>
+                    <p class="text-muted mb-5">Biblioteka jest obecnie pusta. Zaloguj się na konto administratora, aby dodać pierwszą pozycję.</p>
+                    <a asp-action="Login" class="btn btn-primary fw-semibold me-2">Zaloguj się</a>
+                    <a asp-action="AddUser" class="btn btn-outline-primary fw-semibold">Utwórz konto</a>
+                }
             </div>
         </div>
     }
@@ -115,9 +151,9 @@
         transition: all 0.2s ease-in-out;
     }
 
-    .book-card:hover {
-        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1) !important;
-    }
+        .book-card:hover {
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1) !important;
+        }
 
     .card-body {
         padding: 1.5rem;

@@ -19,9 +19,26 @@ namespace BiblioSys.Controllers
             db = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            var books = await db.Books.Include(b => b.Author).ToListAsync();
+            int pageSize = 9;
+            var query = db.Books.Include(b => b.Author).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var s = search.ToLower();
+                query = query.Where(b =>
+                    b.Title.ToLower().Contains(s) ||
+                    (b.Author != null && (b.Author.FirstName + " " + b.Author.LastName).ToLower().Contains(s)));
+            }
+
+            int total = await query.CountAsync();
+            var books = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            ViewBag.Search = search;
+            ViewBag.Page = page;
+            ViewBag.TotalPages = (int)Math.Ceiling(total / (double)pageSize);
+
             return View(books);
         }
 
@@ -69,6 +86,7 @@ namespace BiblioSys.Controllers
         public async Task<IActionResult> Reservations(Reservation reservation)
         {
             reservation.ReservationDate = DateTime.Now;
+            reservation.ReturnDate = DateTime.Now.AddMonths(1);
             reservation.Status = ReservationStatus.Aktywna;
             ModelState.Remove("Book");
             ModelState.Remove("User");
@@ -86,7 +104,7 @@ namespace BiblioSys.Controllers
                 book.IsFree = false;
                 db.Reservations.Add(reservation);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminPanel");
             }
 
             ViewBag.BookId = new SelectList(db.Books.Where(b => b.IsFree), "Id", "Title");
@@ -195,18 +213,48 @@ namespace BiblioSys.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AdminPanel()
+        public async Task<IActionResult> AdminPanel(string searchR, string searchU, int pageR = 1, int pageU = 1)
         {
-            var reservations = await db.Reservations
-                .Include(r => r.Book)
-                    .ThenInclude(b => b.Author)
-                .Include(r => r.User)
-                // don't show reservations that already have a return date
-                .Where(r => r.ReturnDate == null)
-                .ToListAsync();
+            int pageSize = 10;
 
-            var users = await db.Users.ToListAsync();
+            var rQuery = db.Reservations
+                .Include(r => r.Book).ThenInclude(b => b.Author)
+                .Include(r => r.User)
+                .Where(r => r.Status == ReservationStatus.Aktywna)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchR))
+            {
+                var s = searchR.ToLower();
+                rQuery = rQuery.Where(r =>
+                    (r.Book != null && r.Book.Title.ToLower().Contains(s)) ||
+                    (r.User != null && (r.User.FirstName + " " + r.User.LastName + " " + r.User.Email).ToLower().Contains(s)));
+            }
+
+            int totalR = await rQuery.CountAsync();
+            var reservations = await rQuery.Skip((pageR - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            var uQuery = db.Users.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchU))
+            {
+                var s = searchU.ToLower();
+                uQuery = uQuery.Where(u =>
+                    (u.FirstName + " " + u.LastName).ToLower().Contains(s) ||
+                    u.Email.ToLower().Contains(s));
+            }
+
+            int totalU = await uQuery.CountAsync();
+            var users = await uQuery.Skip((pageU - 1) * pageSize).Take(pageSize).ToListAsync();
+
             ViewBag.Users = users;
+            ViewBag.SearchR = searchR;
+            ViewBag.SearchU = searchU;
+            ViewBag.PageR = pageR;
+            ViewBag.PageU = pageU;
+            ViewBag.TotalPagesR = (int)Math.Ceiling(totalR / (double)pageSize);
+            ViewBag.TotalPagesU = (int)Math.Ceiling(totalU / (double)pageSize);
+
             return View(reservations);
         }
 
